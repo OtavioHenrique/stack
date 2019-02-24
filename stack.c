@@ -50,6 +50,13 @@ void destroyStack(Stack *stack) {
     *stack = NULL;
 }
 
+Item stackHead(Stack stack) {
+    if(isEmpty(stack) == 1)
+        puts("Stack is empty");
+
+    return stack->items[stack->head];
+}
+
 Item removeItem(Stack stack) {
     if(isEmpty(stack) == 1)
         puts("Stack is empty!");
