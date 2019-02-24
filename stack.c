@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef char Item;
+typedef int Item;
 
 typedef struct stack {
     int maxItems;
@@ -34,10 +34,32 @@ int isFull(Stack stack) {
     }
 }
 
+void addItem(Item newItem, Stack stack) {
+    if(isFull(stack) == 0) {
+        stack->head++;
+
+        stack->items[stack->head] = newItem;
+    } else {
+        puts("Stack is full!");
+    }
+}
+
 int main(void) {
-    Stack stack = createStack(10);
+    Stack stack = createStack(3);
 
     printf("%d\n", isEmpty(stack));
+
+    puts("Adding number");
+    addItem(1, stack);
+    puts("Adding number");
+    addItem(1, stack);
+    puts("Adding number");
+    addItem(1, stack);
+
+    printf("%d\n", isEmpty(stack));
+
+    addItem(1, stack);
+
 
     printf("%d\n", isFull(stack));
 
