@@ -44,24 +44,54 @@ void addItem(Item newItem, Stack stack) {
     }
 }
 
+void destroyStack(Stack *stack) {
+    free((*stack)->items);
+    free(*stack);
+    *stack = NULL;
+}
+
+Item removeItem(Stack stack) {
+    if(isEmpty(stack) == 1)
+        puts("Stack is empty!");
+
+    Item removedItem = stack->items[stack->head];
+    stack->head--;
+
+    return removedItem;
+}
+
 int main(void) {
     Stack stack = createStack(3);
 
-    printf("%d\n", isEmpty(stack));
+    printf("Is empty: %d\n", isEmpty(stack));
+    printf("Is full: %d\n", isFull(stack));
 
     puts("Adding number");
     addItem(1, stack);
     puts("Adding number");
     addItem(1, stack);
     puts("Adding number");
+    addItem(10, stack);
+
+    printf("Is empty: %d\n", isEmpty(stack));
+    addItem(1, stack);
+    printf("Is full: %d\n", isFull(stack));
+
+    Item removedItem = removeItem(stack);
+
+    printf("Removed Item: %d\n", removedItem);
+
+    printf("Is full: %d\n", isFull(stack));
+    printf("Is empty: %d\n", isEmpty(stack));
+
+    puts("Adding number");
     addItem(1, stack);
 
-    printf("%d\n", isEmpty(stack));
-
+    puts("Adding number");
     addItem(1, stack);
 
-
-    printf("%d\n", isFull(stack));
+    printf("Is full: %d\n", isFull(stack));
+    printf("Is empty: %d\n", isEmpty(stack));
 
     return 0;
 }
